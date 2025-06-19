@@ -1,3 +1,5 @@
+import Navbar from '@/components/Navbar'
+
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
