@@ -77,7 +77,7 @@ export default function AddSchoolPage() {
         {success && <p className="text-green-600">School added successfully!</p>}
       </form>
 
-      <div className="mt-6 text-center">
+      <div className="mt-6 flex justify-end">
         <Link href="/schools">
           <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
             📚 View All Schools
