@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 export async function POST(req) {
   try {
     const body = await req.json()
-    const { name, address, phone, imageUrl } = body
+    const { name, address, phone} = body
 
     if (!name || !address || !phone) {
       return new Response(JSON.stringify({ error: 'Missing fields' }), {
@@ -18,7 +18,6 @@ export async function POST(req) {
         name,
         address,
         phone,
-        imageUrl: imageUrl || ''
       }
     })
 

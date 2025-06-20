@@ -67,13 +67,6 @@ export default function AddSchoolPage() {
           className="w-full border p-2 rounded"
           required
         />
-        <input
-          name="imageUrl"
-          placeholder="Image URL"
-          value={form.imageUrl}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-        />
         <button
           type="submit"
           className="bg-blue-600 text-white px-4 py-2 rounded"
