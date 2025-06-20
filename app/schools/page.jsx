@@ -35,37 +35,36 @@ export default function SchoolsPage() {
   }
 
   return (
-    <main className="p-6 max-w-6xl mx-auto">
+    <main className="min-h-screen bg-[#fef6fb] p-6">
       <Navbar />
-      <h1 className="text-4xl font-bold mb-6 text-center">🏫 All Schools</h1>
+      <h1 className="text-4xl font-bold text-center text-[#333] mb-8">All Schools 📚</h1>
 
-      <input
-        type="text"
-        placeholder="Search schools..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="w-full mb-6 p-3 border rounded shadow"
-      />
+      <div className="max-w-xl mx-auto mb-8">
+        <input
+          type="text"
+          placeholder="Search schools..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-md bg-white text-[#333] shadow"
+        />
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {filtered.map((school, index) => (
           <div
             key={school.id}
-            className="bg-white shadow-md rounded-lg p-5 border border-gray-200 hover:shadow-lg transition"
+            className="bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition"
           >
-            <h2 className="text-2xl font-semibold mb-2">
+            <h2 className="text-2xl font-semibold text-[#4b0082] mb-2">
               {emojis[index % emojis.length]} {school.name}
             </h2>
-            <p className="text-gray-700">
-              <strong>Address:</strong> {school.address}
-            </p>
-            <p className="text-gray-700 mb-2">
-              <strong>Phone:</strong> {school.phone}
-            </p>
-            <div className="flex gap-3 mt-3">
+            <p className="text-[#333]"><strong>Address:</strong> {school.address}</p>
+            <p className="text-[#333] mb-3"><strong>Phone:</strong> {school.phone}</p>
+
+            <div className="flex gap-3">
               <button
                 onClick={() => handleCopy(school)}
-                className="text-sm px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="text-sm px-3 py-1 bg-[#c084fc] text-white rounded hover:bg-[#a855f7]"
               >
                 📋 Copy Info
               </button>
@@ -75,7 +74,7 @@ export default function SchoolsPage() {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+                className="text-sm px-3 py-1 bg-[#7dd3fc] text-white rounded hover:bg-[#38bdf8]"
               >
                 📍 View Map
               </a>
@@ -83,6 +82,10 @@ export default function SchoolsPage() {
           </div>
         ))}
       </div>
+
+      {filtered.length === 0 && (
+        <p className="text-center text-gray-600 mt-8 text-lg">No schools found 😢</p>
+      )}
     </main>
   )
 }
