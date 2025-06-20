@@ -34,17 +34,20 @@ export default function AddSchoolPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#1e1e2f] text-[#e5e5e5]">
+    <main className="min-h-screen bg-gradient-to-br from-[#141e30] via-[#243b55] to-[#141e30] text-white font-sans">
       <Navbar />
-      <div className="max-w-xl mx-auto bg-[#2a2a3c] shadow-lg rounded-lg p-8 mt-12">
-        <h1 className="text-3xl font-bold text-indigo-400 mb-6">Add a School</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="max-w-xl mx-auto mt-16 bg-white/5 backdrop-blur-xl border border-indigo-600 rounded-3xl shadow-2xl p-10 animate-fadeIn">
+        <h1 className="text-4xl font-extrabold text-indigo-400 mb-8 text-center drop-shadow">
+          ✏️ Add a New School
+        </h1>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
           <input
             name="name"
             placeholder="School Name"
             value={form.name}
             onChange={handleChange}
-            className="w-full border border-gray-600 bg-[#1e1e2f] p-3 rounded text-white"
+            className="w-full p-3 rounded-xl border border-gray-600 bg-[#1e1e2f] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             required
           />
           <input
@@ -52,7 +55,7 @@ export default function AddSchoolPage() {
             placeholder="Address"
             value={form.address}
             onChange={handleChange}
-            className="w-full border border-gray-600 bg-[#1e1e2f] p-3 rounded text-white"
+            className="w-full p-3 rounded-xl border border-gray-600 bg-[#1e1e2f] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             required
           />
           <input
@@ -60,22 +63,28 @@ export default function AddSchoolPage() {
             placeholder="Phone Number"
             value={form.phone}
             onChange={handleChange}
-            className="w-full border border-gray-600 bg-[#1e1e2f] p-3 rounded text-white"
+            className="w-full p-3 rounded-xl border border-gray-600 bg-[#1e1e2f] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             required
           />
+
           <button
             type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded"
+            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition duration-200"
             disabled={loading}
           >
-            {loading ? 'Submitting...' : 'Submit'}
+            {loading ? 'Submitting...' : '🚀 Submit School'}
           </button>
-          {success && <p className="text-green-400">School added successfully!</p>}
+
+          {success && (
+            <p className="text-green-400 text-center mt-4">
+              ✅ School added successfully!
+            </p>
+          )}
         </form>
 
-        <div className="mt-6 text-right">
+        <div className="text-right mt-8">
           <Link href="/schools">
-            <button className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600">
+            <button className="bg-gray-800 text-white px-5 py-2 rounded-xl hover:bg-gray-700 transition">
               📚 View All Schools
             </button>
           </Link>
