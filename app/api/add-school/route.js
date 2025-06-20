@@ -1,16 +1,12 @@
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { NextResponse } from 'next/server'
+import prisma from '@/lib/prisma'
 
 export async function POST(req) {
   try {
-    const body = await req.json()
-    const { name, address, phone} = body
+    const { name, address, phone } = await req.json()
 
     if (!name || !address || !phone) {
-      return new Response(JSON.stringify({ error: 'Missing fields' }), {
-        status: 400
-      })
+      return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
     }
 
     const newSchool = await prisma.school.create({
@@ -18,14 +14,12 @@ export async function POST(req) {
         name,
         address,
         phone,
-      }
+      },
     })
 
-    return new Response(JSON.stringify(newSchool), { status: 201 })
-  } catch (err) {
-    console.error(err)
-    return new Response(JSON.stringify({ error: 'Server error' }), {
-      status: 500
-    })
+    return NextResponse.json(newSchool, { status: 201 })
+  } catch (error) {
+    console.error('[API ERROR]', error)
+    return NextResponse.json({ error: 'Failed to add school' }, { status: 500 })
   }
 }
