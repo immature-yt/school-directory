@@ -34,17 +34,17 @@ export default function AddSchoolPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#fef6fb] p-6">
+    <main className="min-h-screen bg-[#1e1e2f] text-[#e5e5e5]">
       <Navbar />
-      <div className="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-8">
-        <h1 className="text-3xl font-bold text-[#333] mb-4">Add a School</h1>
+      <div className="max-w-xl mx-auto bg-[#2a2a3c] shadow-lg rounded-lg p-8 mt-12">
+        <h1 className="text-3xl font-bold text-indigo-400 mb-6">Add a School</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             name="name"
             placeholder="School Name"
             value={form.name}
             onChange={handleChange}
-            className="w-full border border-gray-300 p-3 rounded-md bg-[#fff] text-[#333]"
+            className="w-full border border-gray-600 bg-[#1e1e2f] p-3 rounded text-white"
             required
           />
           <input
@@ -52,7 +52,7 @@ export default function AddSchoolPage() {
             placeholder="Address"
             value={form.address}
             onChange={handleChange}
-            className="w-full border border-gray-300 p-3 rounded-md bg-[#fff] text-[#333]"
+            className="w-full border border-gray-600 bg-[#1e1e2f] p-3 rounded text-white"
             required
           />
           <input
@@ -60,22 +60,22 @@ export default function AddSchoolPage() {
             placeholder="Phone Number"
             value={form.phone}
             onChange={handleChange}
-            className="w-full border border-gray-300 p-3 rounded-md bg-[#fff] text-[#333]"
+            className="w-full border border-gray-600 bg-[#1e1e2f] p-3 rounded text-white"
             required
           />
           <button
             type="submit"
-            className="bg-[#c084fc] hover:bg-[#a855f7] text-white font-semibold px-4 py-2 rounded-md"
+            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded"
             disabled={loading}
           >
             {loading ? 'Submitting...' : 'Submit'}
           </button>
-          {success && <p className="text-green-600">School added successfully!</p>}
+          {success && <p className="text-green-400">School added successfully!</p>}
         </form>
 
         <div className="mt-6 text-right">
           <Link href="/schools">
-            <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+            <button className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600">
               📚 View All Schools
             </button>
           </Link>
