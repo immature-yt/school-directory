@@ -1,16 +1,14 @@
 'use client'
-import Link from 'next/link'
 
 import Navbar from '@/components/Navbar'
-
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function AddSchoolPage() {
   const [form, setForm] = useState({
     name: '',
     address: '',
-    phone: '',
-    imageUrl: ''
+    phone: ''
   })
 
   const [loading, setLoading] = useState(false)
@@ -33,7 +31,7 @@ export default function AddSchoolPage() {
     setLoading(false)
 
     if (res.ok) {
-      setForm({ name: '', address: '', phone: '', imageUrl: '' })
+      setForm({ name: '', address: '', phone: '' })
       setSuccess(true)
     } else {
       alert('Something went wrong')
@@ -42,6 +40,7 @@ export default function AddSchoolPage() {
 
   return (
     <main className="max-w-xl mx-auto p-8">
+      <Navbar />
       <h1 className="text-3xl font-bold mb-4">Add a School</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -76,23 +75,15 @@ export default function AddSchoolPage() {
           {loading ? 'Submitting...' : 'Submit'}
         </button>
         {success && <p className="text-green-600">School added successfully!</p>}
-
-        <Link href="/schools">
-          <button style={{
-           marginTop: '1rem',
-           padding: '0.5rem 1rem',
-            backgroundColor: '#0070f3',
-            color: '#fff',
-            border: 'none',
-             borderRadius: '4px',
-            cursor: 'pointer'
-        }}>
-       📚 View All Schools
-      </button>
-      </Link>
-
       </form>
+
+      <div className="mt-6 text-center">
+        <Link href="/schools">
+          <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+            📚 View All Schools
+          </button>
+        </Link>
+      </div>
     </main>
   )
 }
-
