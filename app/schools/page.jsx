@@ -6,45 +6,18 @@ export default async function SchoolsPage() {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>📚 All Schools</h1>
-      <table style={{
-        width: '100%',
-        borderCollapse: 'collapse',
-        fontFamily: 'Arial, sans-serif',
-      }}>
-        <thead>
-          <tr style={{ backgroundColor: '#f2f2f2' }}>
-            <th style={thStyle}>Image</th>
-            <th style={thStyle}>Name</th>
-            <th style={thStyle}>Address</th>
-            <th style={thStyle}>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-          {schools.map((school) => (
-            <tr key={school.id} style={{ borderBottom: '1px solid #ddd' }}>
-              <td style={tdStyle}>
-                <img src={school.image} alt={school.name} style={{ width: 100, borderRadius: 8 }} />
-              </td>
-              <td style={tdStyle}>{school.name}</td>
-              <td style={tdStyle}>{school.address}</td>
-              <td style={tdStyle}>{school.phone}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h1>All Schools</h1>
+      <ul>
+        {schools.map((school) => (
+          <li key={school.id}>
+            <strong>{school.name}</strong> <br />
+            Address: {school.address} <br />
+            Phone: {school.phone} <br />
+            Image: <img src={school.image} alt={school.name} style={{ width: 200 }} />
+            <hr />
+          </li>
+        ))}
+      </ul>
     </div>
   )
-}
-
-const thStyle = {
-  padding: '12px',
-  textAlign: 'left',
-  fontWeight: 'bold',
-  borderBottom: '2px solid #ccc',
-}
-
-const tdStyle = {
-  padding: '12px',
-  verticalAlign: 'top',
 }
