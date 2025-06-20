@@ -17,27 +17,32 @@ export default function SchoolsPage() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-[#1e1e2f] text-[#e5e5e5] p-6">
+    <main className="min-h-screen bg-gradient-to-tr from-[#141e30] via-[#243b55] to-[#141e30] text-white p-6 font-sans">
       <Navbar />
-      <h1 className="text-4xl font-bold text-center text-indigo-400 mb-10">📚 All Schools</h1>
+      <h1 className="text-5xl text-center font-extrabold text-indigo-400 mb-12 drop-shadow-2xl animate-fadeIn">
+        🎓 Explore Amazing Schools
+      </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto px-4">
         {schools.map((school) => (
           <div
             key={school.id}
-            className="bg-[#2a2a3c] p-6 rounded-xl shadow-md border border-gray-600 hover:shadow-lg transition"
+            className="backdrop-blur-lg bg-white/5 border border-indigo-500 rounded-3xl shadow-xl p-6 transition transform hover:scale-105 hover:shadow-indigo-500/50"
           >
-            <h2 className="text-2xl font-semibold text-indigo-300 mb-2">{school.name}</h2>
-            <p className="text-gray-300"><strong>Address:</strong> {school.address}</p>
-            <p className="text-gray-300 mb-4"><strong>Phone:</strong> {school.phone}</p>
-
+            <h2 className="text-2xl font-semibold text-indigo-300 mb-2">🏫 {school.name}</h2>
+            <p className="text-gray-300 mb-1">
+              <span className="font-bold text-indigo-200">📍 Address:</span> {school.address}
+            </p>
+            <p className="text-gray-300 mb-4">
+              <span className="font-bold text-indigo-200">📞 Phone:</span> {school.phone}
+            </p>
             <button
               onClick={() => {
                 const text = `${school.name}\n${school.address}\n${school.phone}`
                 navigator.clipboard.writeText(text)
                 alert('Copied to clipboard!')
               }}
-              className="text-sm px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-500"
+              className="text-sm bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-full transition"
             >
               📋 Copy Info
             </button>
@@ -46,7 +51,9 @@ export default function SchoolsPage() {
       </div>
 
       {schools.length === 0 && (
-        <p className="text-center text-gray-400 mt-8 text-lg">No schools added yet.</p>
+        <p className="text-center text-gray-400 mt-12 text-lg animate-pulse">
+          No schools added yet.
+        </p>
       )}
     </main>
   )
