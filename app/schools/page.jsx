@@ -17,7 +17,7 @@ export default function SchoolsPage() {
   }, [])
 
   return (
-    <main className="min-h-screen px-6 py-10 bg-[#0e1117] text-white font-poppins">
+    <main className="min-h-screen px-6 pt-24 pb-10 bg-[#0e1117] text-white font-poppins">
       <Navbar />
       <h1 className="text-center text-4xl md:text-5xl font-extrabold text-indigo-400 mb-12 animate-fadeIn drop-shadow-xl">
         📚 School Directory
