@@ -40,7 +40,7 @@ export default function AddSchoolPage() {
   }
 
   return (
-    <main className="min-h-screen px-6 pt-24 pb-10 bg-[#0e1117] text-white font-poppins">
+    <main className="min-h-screen px-6 py-14 bg-[#0e1117] text-white font-poppins">
       <Navbar />
       <div className="max-w-xl mx-auto backdrop-blur-lg bg-white/5 border border-indigo-500 rounded-3xl p-10 shadow-2xl animate-fadeIn">
         <h1 className="text-3xl md:text-4xl font-bold text-indigo-400 text-center mb-8">
