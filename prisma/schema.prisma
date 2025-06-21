@@ -12,6 +12,6 @@ model School {
   name      String
   address   String
   phone     String
-  image     String   @default("")
+  image     String?
   createdAt DateTime @default(now())
 }

@@ -1,9 +1,8 @@
 'use client'
 
-import Navbar from '@/components/Navbar'
-import ImageUploader from '@/components/ImageUploader'
 import { useState } from 'react'
 import Link from 'next/link'
+import ImageUploader from '@/components/ImageUploader'
 
 export default function AddSchoolPage() {
   const [form, setForm] = useState({
@@ -12,7 +11,6 @@ export default function AddSchoolPage() {
     phone: '',
     image: ''
   })
-
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
 
@@ -27,7 +25,12 @@ export default function AddSchoolPage() {
     const res = await fetch('/api/add-school', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form)
+      body: JSON.stringify({
+        name: form.name,
+        address: form.address,
+        phone: form.phone,
+        image: form.image || null
+      })
     })
 
     setLoading(false)
@@ -41,17 +44,16 @@ export default function AddSchoolPage() {
   }
 
   return (
-    <main className="max-w-xl mx-auto p-8">
-      <Navbar />
-      <h1 className="text-3xl font-bold mb-4">Add a School</h1>
+    <main className="max-w-xl mx-auto p-6">
+      <h1 className="text-3xl font-bold neon-title mb-6 text-center">Add a School</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5 glass-card p-6 rounded-xl shadow-lg animate-fade-in-fast">
         <input
           name="name"
           placeholder="School Name"
           value={form.name}
           onChange={handleChange}
-          className="w-full border p-2 rounded"
+          className="input-field"
           required
         />
         <input
@@ -59,7 +61,7 @@ export default function AddSchoolPage() {
           placeholder="Address"
           value={form.address}
           onChange={handleChange}
-          className="w-full border p-2 rounded"
+          className="input-field"
           required
         />
         <input
@@ -67,28 +69,30 @@ export default function AddSchoolPage() {
           placeholder="Phone Number"
           value={form.phone}
           onChange={handleChange}
-          className="w-full border p-2 rounded"
+          className="input-field"
           required
         />
 
         <ImageUploader
-          onUploadComplete={(url) => setForm({ ...form, image: url })}
+          onUploadComplete={(url) => {
+            setForm((prev) => ({ ...prev, image: url }))
+          }}
         />
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="submit-btn"
           disabled={loading}
         >
           {loading ? 'Submitting...' : 'Submit'}
         </button>
 
-        {success && <p className="text-green-600">School added successfully!</p>}
+        {success && <p className="text-green-400 text-center">✅ School added successfully!</p>}
       </form>
 
-      <div className="mt-6 flex justify-end">
+      <div className="mt-6 text-center">
         <Link href="/schools">
-          <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+          <button className="text-white border border-cyan-400 px-4 py-2 rounded hover:bg-cyan-900 transition-all">
             📚 View All Schools
           </button>
         </Link>
