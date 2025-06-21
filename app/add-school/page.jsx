@@ -1,15 +1,16 @@
 'use client'
 
 import Navbar from '@/components/Navbar'
+import ImageUploader from '@/components/ImageUploader'
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
 export default function AddSchoolPage() {
   const [form, setForm] = useState({
     name: '',
     address: '',
-    phone: ''
+    phone: '',
+    image: ''
   })
 
   const [loading, setLoading] = useState(false)
@@ -32,7 +33,7 @@ export default function AddSchoolPage() {
     setLoading(false)
 
     if (res.ok) {
-      setForm({ name: '', address: '', phone: '' })
+      setForm({ name: '', address: '', phone: '', image: '' })
       setSuccess(true)
     } else {
       alert('Something went wrong')
@@ -40,74 +41,58 @@ export default function AddSchoolPage() {
   }
 
   return (
-    <>
+    <main className="max-w-xl mx-auto p-8">
       <Navbar />
+      <h1 className="text-3xl font-bold mb-4">Add a School</h1>
 
-      <motion.main
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="min-h-screen px-6 pt-24 pb-10 bg-[#0e1117] text-white font-poppins"
-      >
-        <h1 className="text-4xl font-extrabold text-center text-pink-400 drop-shadow-[0_0_15px_rgba(244,114,182,0.8)] mb-10">
-          🏫 Add a School
-        </h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          name="name"
+          placeholder="School Name"
+          value={form.name}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
+        <input
+          name="address"
+          placeholder="Address"
+          value={form.address}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
+        <input
+          name="phone"
+          placeholder="Phone Number"
+          value={form.phone}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          required
+        />
 
-        <motion.form
-          onSubmit={handleSubmit}
-          className="bg-white/5 backdrop-blur-xl border border-pink-400 rounded-2xl p-8 max-w-xl mx-auto shadow-2xl space-y-5 transition hover:shadow-pink-400/50"
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+        <ImageUploader
+          onUploadComplete={(url) => setForm({ ...form, image: url })}
+        />
+
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded"
+          disabled={loading}
         >
-          <input
-            name="name"
-            placeholder="School Name"
-            value={form.name}
-            onChange={handleChange}
-            className="w-full border border-pink-400 bg-transparent text-white p-3 rounded outline-none focus:ring-2 focus:ring-pink-400 placeholder-pink-300"
-            required
-          />
-          <input
-            name="address"
-            placeholder="Address"
-            value={form.address}
-            onChange={handleChange}
-            className="w-full border border-pink-400 bg-transparent text-white p-3 rounded outline-none focus:ring-2 focus:ring-pink-400 placeholder-pink-300"
-            required
-          />
-          <input
-            name="phone"
-            placeholder="Phone Number"
-            value={form.phone}
-            onChange={handleChange}
-            className="w-full border border-pink-400 bg-transparent text-white p-3 rounded outline-none focus:ring-2 focus:ring-pink-400 placeholder-pink-300"
-            required
-          />
+          {loading ? 'Submitting...' : 'Submit'}
+        </button>
 
-          <button
-            type="submit"
-            className="bg-pink-600 hover:bg-pink-500 text-white px-6 py-3 rounded font-semibold w-full transition duration-200"
-            disabled={loading}
-          >
-            {loading ? 'Submitting...' : 'Submit'}
+        {success && <p className="text-green-600">School added successfully!</p>}
+      </form>
+
+      <div className="mt-6 flex justify-end">
+        <Link href="/schools">
+          <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+            📚 View All Schools
           </button>
-
-          {success && (
-            <p className="text-green-400 text-center font-medium mt-4">
-              🎉 School added successfully!
-            </p>
-          )}
-
-          <div className="pt-4 text-center">
-            <Link href="/schools">
-              <button className="text-pink-300 hover:text-white transition">
-                📚 View All Schools →
-              </button>
-            </Link>
-          </div>
-        </motion.form>
-      </motion.main>
-    </>
+        </Link>
+      </div>
+    </main>
   )
 }
