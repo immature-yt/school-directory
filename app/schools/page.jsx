@@ -82,7 +82,17 @@ export default function SchoolsPage() {
                       {selectedSchool.name}
                     </h2>
                     <p className="text-gray-300 mb-1">📍 {selectedSchool.address}</p>
-                    <p className="text-gray-300">📞 {selectedSchool.phone}</p>
+                    <p className="text-gray-300 mb-4">📞 {selectedSchool.phone}</p>
+
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedSchool.address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button className="px-4 py-2 rounded bg-green-600 hover:bg-green-500 transition text-white">
+                        🗺️ Show on Map
+                      </button>
+                    </a>
                   </div>
                 </div>
 
