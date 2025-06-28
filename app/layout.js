@@ -21,6 +21,12 @@ export default function RootLayout({ children }) {
         {children}
         <Analytics />
         <SpeedInsights />
+        <footer className="mt-10 text-center text-gray-400 text-sm">
+          <a href="/contact" className="hover:underline">Contact Us</a> | 
+         <a href="/about" className="hover:underline mx-2">About</a> | 
+         <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
+      </footer>
+
       </body>
     </html>
   )
