@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         <footer className="fixed bottom-0 left-0 w-full bg-[#1a1d24] text-gray-400 text-sm py-3 px-4 border-t border-gray-700 flex justify-center gap-6 z-50">
           <a href="/contact" className="hover:underline">Contact Us</a> | 
          <a href="/about" className="hover:underline mx-2">About</a> | 
-         <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
+         <a href="/privacy" className="hover:underline">Privacy Policy</a>
       </footer>
 
       </body>
