@@ -13,5 +13,18 @@ model School {
   address   String
   phone     String
   image     String?
+  reviews   Review[]
   createdAt DateTime @default(now())
+}
+
+model Review {
+  id              String   @id @default(cuid())
+  school          School   @relation(fields: [schoolId], references: [id])
+  schoolId        String
+  infrastructure  Int
+  academics       Int
+  valueForMoney   Int
+  extracurricular Int
+  feedback        String? // Optional
+  createdAt       DateTime @default(now())
 }

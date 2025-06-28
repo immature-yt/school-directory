@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import '@/app/globals.css'
+import Link from 'next/link'
 
 export default function SchoolsPage() {
   const [schools, setSchools] = useState([])
@@ -17,6 +18,17 @@ export default function SchoolsPage() {
     fetchSchools()
   }, [])
 
+  const fetchSchoolWithFeedback = async (school) => {
+    try {
+      const res = await fetch(`/api/get-written-reviews?schoolId=${school.id}`)
+      const feedbacks = await res.json()
+      setSelectedSchool({ ...school, feedbacks })
+    } catch (err) {
+      console.error('Failed to fetch feedbacks', err)
+      setSelectedSchool(school)
+    }
+  }
+
   return (
     <main className="relative min-h-screen p-6 text-white">
       {/* Floating neon lights */}
@@ -31,7 +43,7 @@ export default function SchoolsPage() {
         {schools.map((school) => (
           <div
             key={school.id}
-            onClick={() => setSelectedSchool(school)}
+            onClick={() => fetchSchoolWithFeedback(school)}
             className="cursor-pointer neon-card p-4 rounded-lg transition hover:scale-[1.02] bg-black/40 backdrop-blur-md"
           >
             <h2 className="text-2xl font-semibold text-white">{school.name}</h2>
@@ -77,6 +89,41 @@ export default function SchoolsPage() {
                     🌍 Show on Map
                   </button>
                 </a>
+
+                {/* Review Section */}
+                <div className="mt-6 space-y-3">
+                  <h3 className="text-xl font-bold neon-title">🏫 Reviews</h3>
+
+                  {selectedSchool.avgInfrastructure ? (
+                    <div>
+                      <p>🏗 Infrastructure: <strong>{selectedSchool.avgInfrastructure.toFixed(1)} / 5</strong></p>
+                      <p>📚 Academics: <strong>{selectedSchool.avgAcademics.toFixed(1)} / 5</strong></p>
+                      <p>💸 Value for Money: <strong>{selectedSchool.avgValue.toFixed(1)} / 5</strong></p>
+                      <p>🎭 Extracurricular: <strong>{selectedSchool.avgExtra.toFixed(1)} / 5</strong></p>
+                    </div>
+                  ) : (
+                    <p className="text-sm italic text-gray-400">No reviews yet.</p>
+                  )}
+                </div>
+
+                {/* Written Reviews Section */}
+                {selectedSchool.feedbacks && selectedSchool.feedbacks.length > 0 && (
+                  <div className="mt-6 space-y-3">
+                    <h3 className="text-xl font-bold neon-title">📝 What Others Say</h3>
+                    {selectedSchool.feedbacks.map((review, index) => (
+                      <div key={index} className="bg-black/30 p-4 rounded-lg text-sm border border-cyan-700">
+                        {review.feedback && <p className="text-gray-300 italic">"{review.feedback}"</p>}
+                        <p className="text-gray-400 mt-1 text-xs">📅 {new Date(review.createdAt).toLocaleDateString()}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <Link href={`/review/${selectedSchool.id}`}>
+                  <button className="mt-4 bg-fuchsia-700 hover:bg-fuchsia-900 px-4 py-2 rounded text-white font-semibold transition">
+                    ✍️ Write a Review
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
