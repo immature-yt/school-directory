@@ -1,7 +1,7 @@
 // app/layout.js
 import './globals.css'
 import { Analytics } from '@vercel/analytics/react' // ✅ Import Vercel Analytics
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 export const metadata = {
   title: 'School Directory',
