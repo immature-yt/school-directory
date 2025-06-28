@@ -1,6 +1,6 @@
 // app/layout.js
 import './globals.css'
-import { Analytics } from '@vercel/analytics/react' // ✅ Import Vercel Analytics
+import { Analytics } from '@vercel/analytics/next' // ✅ Import Vercel Analytics
 
 export const metadata = {
   title: 'School Directory',
