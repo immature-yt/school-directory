@@ -2,11 +2,6 @@
 
 import { useEffect, useState } from 'react'
 
-export const metadata = {
-  title: 'About - School Directory',
-  description: 'Learn more about the School Directory project and the developer behind it',
-}
-
 export default function AboutPage() {
   const [visible, setVisible] = useState(false)
 
@@ -21,7 +16,7 @@ export default function AboutPage() {
 
       <section className="space-y-6 text-white text-lg leading-relaxed bg-black/30 backdrop-blur-md p-6 rounded-xl border border-cyan-500 shadow-md">
         <p>
-          <strong>School Directory</strong> is a modern, web-based platform built as part of a <span className="text-fuchsia-400">college project and internship</span> challenge. It aims to help students, parents, and educators explore schools and rate them based on real experiences.
+          <strong>School Directory</strong> is a modern, web-based platform built as part of a <span className="text-fuchsia-400">college project and internship</span> challenge.
         </p>
 
         <p className="text-cyan-300 font-medium animate-pulse">
@@ -29,12 +24,10 @@ export default function AboutPage() {
         </p>
 
         <p>
-          This app was crafted by a passionate student developer who loves clean code, bold UI, and <span className="text-fuchsia-400 font-semibold">bringing ideas to life</span>. Every page, feature, and style was built from scratch to learn real-world skills.
+          This app was crafted by a passionate student developer who loves clean code, bold UI, and <span className="text-fuchsia-400 font-semibold">bringing ideas to life</span>.
         </p>
 
-        <p className="italic text-sm text-gray-400">
-          (Fun fact: No templates were used. Everything was hand-coded.)
-        </p>
+        <p className="italic text-sm text-gray-400">(Fun fact: No templates were used. Everything was hand-coded.)</p>
 
         <h2 className="text-2xl font-bold mt-8 mb-2 text-fuchsia-400">🔥 Features Built So Far</h2>
         <ul className="list-disc list-inside space-y-2">
