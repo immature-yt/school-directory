@@ -1,7 +1,7 @@
 // app/layout.js
 import './globals.css'
-import { Analytics } from '@vercel/analytics/react' // ✅ Import Vercel Analytics
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata = {
   title: 'School Directory',
@@ -12,7 +12,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* ✅ Add Poppins font from Google */}
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
           rel="stylesheet"
@@ -20,7 +19,8 @@ export default function RootLayout({ children }) {
       </head>
       <body className="font-poppins bg-[#0e1117] text-white min-h-screen">
         {children}
-        <Analytics /> {/* ✅ Add Vercel Analytics just before closing body tag */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
