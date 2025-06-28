@@ -1,5 +1,6 @@
 // app/layout.js
 import './globals.css'
+import { Analytics } from '@vercel/analytics/react' // ✅ Import Vercel Analytics
 
 export const metadata = {
   title: 'School Directory',
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="font-poppins bg-[#0e1117] text-white min-h-screen">
         {children}
+        <Analytics /> {/* ✅ Add Vercel Analytics just before closing body tag */}
       </body>
     </html>
   )
